@@ -16,7 +16,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
 /**
- * Класс-модель для дополнительных данных пользователя (Person).
+ * Model class for a additional data to the Person.
  *
  */
 public class PersonDetails {
@@ -28,21 +28,21 @@ public class PersonDetails {
 	private final ObjectProperty<LocalDate> data;
 
 	/**
-	 * Конструктор по умолчанию.
+	 * Default constructor.
 	 */
 	public PersonDetails() {
 		this("Empty Name", "Empty Department", 0, true, false);
 	}
 
 	/**
-	 * Конструктор с дефолтными данными
+	 * Constructor with some initial data.
 	 */
 	public PersonDetails(String department) {
 		this("Empty Name", department, 0, true, false);
 	}
 
 	/**
-	 * Конструктор с полной инициализацией
+	 * Constructor with full initialization.
 	 * 
 	 * @param itemName
 	 * @param department

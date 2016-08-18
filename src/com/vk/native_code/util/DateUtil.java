@@ -4,24 +4,20 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-/**
- * Вспомогательные функции для работы с датами.
- * 
- */
 public class DateUtil {
 
-	/** Шаблон даты, используемый для преобразования. Можно поменять на свой. */
+	/** The date pattern that is used for conversion. Change as you wish. */
 	private static final String DATE_PATTERN = "dd.MM.yyyy";
-	/** Форматировщик даты. */
+	/** The date formatter. */
 	private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_PATTERN);
 
 	/**
-	 * Возвращает полученную дату в виде хорошо отформатированной строки.
-	 * Используется определённый выше {@link DateUtil#DATE_PATTERN}.
+	 * Returns the given date as a well formatted String. The above defined
+	 * {@link DateUtil#DATE_PATTERN} is used.
 	 * 
 	 * @param date
-	 *            - дата, которая будет возвращена в виде строки
-	 * @return отформатированную строку
+	 *            the date to be returned as a string
+	 * @return formatted string
 	 */
 	public static String format(LocalDate date) {
 		if (date == null) {
@@ -31,14 +27,14 @@ public class DateUtil {
 	}
 
 	/**
-	 * Преобразует строку, которая отформатирована по правилам шаблона
-	 * {@link DateUtil#DATE_PATTERN} в объект {@link LocalDate}.
+	 * Converts a String in the format of the defined
+	 * {@link DateUtil#DATE_PATTERN} to a {@link LocalDate} object.
 	 * 
-	 * Возвращает null, если строка не может быть преобразована.
+	 * Returns null if the String could not be converted.
 	 * 
 	 * @param dateString
-	 *            - дата в виде String
-	 * @return объект даты или null, если строка не может быть преобразована
+	 *            the date as String
+	 * @return the date object or null if it could not be converted
 	 */
 	public static LocalDate parse(String dateString) {
 		try {
@@ -49,13 +45,13 @@ public class DateUtil {
 	}
 
 	/**
-	 * Проверяет, является ли строка корректной датой.
+	 * Checks the String whether it is a valid date.
 	 * 
 	 * @param dateString
-	 * @return true, если строка является корректной датой
+	 * @return true if the String is a valid date
 	 */
 	public static boolean validDate(String dateString) {
-		// Пытаемся разобрать строку.
+		// Try to parse the String.
 		return DateUtil.parse(dateString) != null;
 	}
 }

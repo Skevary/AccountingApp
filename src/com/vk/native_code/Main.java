@@ -38,7 +38,7 @@ public class Main extends Application {
 	private ObservableList<Person> personData = FXCollections.observableArrayList();
 
 	/**
-	 * Конструктор
+	 * Constructor
 	 */
 	public Main() {
 
@@ -59,7 +59,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("Automation Application");
-		// Устанавливаем иконку приложения.
+		// Set the application icon.
 		this.primaryStage.getIcons().add(new Image("file:resources/images/index.png"));
 
 		initRootMain();
@@ -67,18 +67,18 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Инициализирует корневой макет.
+	 * Initialisere the root layout.
 	 */
 	private void initRootMain() {
 		try {
-			// Загружаем корневой макет из fxml файла.
+			// Load root layout from fxml file.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("fxml/RootMain.fxml"));
 			rootLayout = (BorderPane) loader.load();
-			// Отображаем сцену, содержащую корневой макет
+			// Show the scene containing the root layout.
 			Scene scene = new Scene(rootLayout);
 			primaryStage.setScene(scene);
-			// Даём контроллеру доступ к главному прилодению.
+			// Give the controller access to the main app.
 			RootMainController controller = loader.getController();
 			controller.setMainApp(this);
 
@@ -86,7 +86,7 @@ public class Main extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		// Пытается загрузить последний открытый файл с адресатами.
+		// Try to load last opened person file.
 		File file = getPersonFilePath();
 		if (file != null) {
 			loadPersonDataFromFile(file);
@@ -94,17 +94,17 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Показывает в корневом макете сведения об пользователях.
+	 * Shows in the root layout of information about person.
 	 */
 	private void initMain() {
 		try {
-			// Загружаем сведения об пользователях.
+			// Load information about users.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("fxml/Main.fxml"));
 			SplitPane main = (SplitPane) loader.load();
-			// Помещаем сведения об пользователях в центр корневого макета.
+			// Publish information about users in the center of root layout.
 			rootLayout.setCenter(main);
-			// Даём контроллеру доступ к главному приложению.
+			// Give the controller access to the main app.
 			MainController controller = loader.getController();
 			controller.setMain(this);
 		} catch (IOException e) {
@@ -114,18 +114,17 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Открывает диалоговое окно для изменения деталей указанного пользователя.
-	 * Если кликнул OK, то изменения сохраняются в предоставленном объекте
-	 * пользователя и возвращается значение true.
+	 * Opens a dialog to edit details for the specified person. If the user
+	 * clicks OK, the changes are saved into the provided person object and true
+	 * is returned.
 	 * 
 	 * @param person
-	 *            - объект пользователя, который надо изменить
-	 * @return true, если пользователь кликнул OK, в противном случае false.
+	 *            the person object to be edited
+	 * @return true if the user clicked OK, false otherwise.
 	 */
 	public boolean showPersonEditDialog(Person person) {
 		try {
-			// Загружаем fxml-файл и создаём новую сцену
-			// для всплывающего диалогового окна.
+			// Load the fxml file and create a new stage for the pop-up dialog.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("fxml/PersonEditDialog.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
@@ -137,12 +136,11 @@ public class Main extends Application {
 			dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(page);
 			dialogStage.setScene(scene);
-			// Передаём пользователя в контроллер.
+			// Set the person into the controller.
 			PersonEditDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 			controller.setPerson(person);
-			// Отображаем диалоговое окно и ждём, пока пользователь его не
-			// закроет
+			// Show the dialog and wait until the user closes it.
 			dialogStage.showAndWait();
 
 			return controller.isOkClicked();
@@ -153,18 +151,17 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Открывает диалоговое окно для изменения полей деталей для пользователя.
-	 * Если кликнул OK, то изменения сохраняются в предоставленном объекте
-	 * пользователя и возвращается значение true.
+	 * Opens a dialog to edit details for the specified fields person. If the
+	 * user clicks OK, the changes are saved into the provided person object and
+	 * true is returned.
 	 * 
 	 * @param person
-	 *            - объект пользователя, который надо изменить
-	 * @return true, если пользователь кликнул OK, в противном случае false.
+	 *            the person object to be edited
+	 * @return true if the user clicked OK, false otherwise.
 	 */
 	public boolean showPersonEditDialogDetails(PersonDetails personDetails) {
 		try {
-			// Загружаем fxml-файл и создаём новую сцену
-			// для всплывающего диалогового окна.
+			// Load the fxml file and create a new stage for the pop-up dialog.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("fxml/PersonEditDialogDetails.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
@@ -175,13 +172,11 @@ public class Main extends Application {
 			dialogStage.setResizable(false);
 			dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
-			// Передаём пользователя в контроллер.
+			// Set the person into the controller.
 			PersonEditDialogDetailsController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
 			controller.setPerson(personDetails);
-			// Отображаем диалоговое окно и ждём, пока пользователь его не
-			// закроет
+			// Show the dialog and wait until the user closes it.
 			dialogStage.showAndWait();
 
 			return controller.isOkClicked();
@@ -192,11 +187,11 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Открывает диалоговое окно для вывода статистики .
+	 * Opens a dialog to show person statistics.
 	 */
 	public void showStatistics() {
 		try {
-			// Загружает fxml-файл и создаёт новую сцену для всплывающего окна.
+			// Load the fxml file and create a new stage for the pop-up.
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("fxml/Statistics.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
@@ -207,7 +202,7 @@ public class Main extends Application {
 			Scene scene = new Scene(page);
 			dialogStage.setScene(scene);
 
-			// Передаёт адресатов в контроллер.
+			// Set the persons into the controller.
 			StatisticsController controller = loader.getController();
 			for (int i = 0; i < personData.size(); i++) {
 				controller.setPersonData(personData.get(i).getDetailsList());
@@ -220,10 +215,9 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Возвращает preference файла пользователя, то есть, последний открытый
-	 * файл. Этот preference считывается из реестра, специфичного для конкретной
-	 * операционной системы. Если preference не был найден, то возвращается
-	 * null.
+	 * Returns the person file preference, i.e. the file that was last opened.
+	 * The preference is read from the OS specific registry. If no such
+	 * preference can be found, null is returned.
 	 * 
 	 * @return
 	 */
@@ -238,11 +232,11 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Задаёт путь текущему загруженному файлу. Этот путь сохраняется в реестре,
-	 * специфичном для конкретной операционной системы.
+	 * Sets the file path of the currently loaded file. The path is persisted in
+	 * the OS specific registry.
 	 * 
 	 * @param file
-	 *            - файл или null, чтобы удалить путь
+	 *            the file or null to remove the path
 	 */
 	public void setPersonFilePath(File file) {
 		Preferences prefs = Preferences.userNodeForPackage(Main.class);
@@ -258,8 +252,8 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Загружает информацию о пользователях из указанного файла. Текущая
-	 * информация об адресатах будет заменена.
+	 * Loads person data from the specified file. The current person data will
+	 * be replaced.
 	 * 
 	 * @param file
 	 */
@@ -267,11 +261,11 @@ public class Main extends Application {
 		try {
 			JAXBContext context = JAXBContext.newInstance(PersonListWrapper.class);
 			Unmarshaller um = context.createUnmarshaller();
-			// Чтение XML из файла и демаршализация.
+			// Reading XML from the file and unmarshalling.
 			PersonListWrapper wrapper = (PersonListWrapper) um.unmarshal(file);
 			personData.clear();
 			personData.addAll(wrapper.getPersons());
-			// Сохраняем путь к файлу в реестре.
+			// Save the file path to the registry.
 			setPersonFilePath(file);
 
 		} catch (Exception e) {
@@ -284,7 +278,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Сохраняет текущую информацию об адресатах в указанном файле.
+	 * Saves the current person data to the specified file.
 	 * 
 	 * @param file
 	 */
@@ -292,12 +286,12 @@ public class Main extends Application {
 		try {
 			JAXBContext context = JAXBContext.newInstance(PersonListWrapper.class);
 			Marshaller m = context.createMarshaller();
-			// Обёртываем наши данные о пользователе.
+			// Wrapping our person data.
 			PersonListWrapper wrapper = new PersonListWrapper();
 			wrapper.setPersons(personData);
-			// Маршаллируем и сохраняем XML в файл.
+			// Marshalling and saving XML to the file.
 			m.marshal(wrapper, file);
-			// Сохраняем путь к файлу в реестре.
+			// Save the file path to the registry.
 			setPersonFilePath(file);
 		} catch (Exception e) {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -309,7 +303,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Возвращает главную сцену.
+	 * Returns the main stage.
 	 * 
 	 * @return
 	 */
@@ -318,7 +312,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Возвращает данные в виде наблюдаемого списка адресатов.
+	 * Returns the data as an observable list of Persons.
 	 * 
 	 * @return
 	 */

@@ -16,7 +16,7 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Series;
 
 /**
- * Контроллер для представления статистики дней рождений.
+ * The controller for the birthday statistics view.
  * 
  */
 public class StatisticsController {
@@ -29,22 +29,25 @@ public class StatisticsController {
 	private ObservableList<String> monthNames = FXCollections.observableArrayList();
 
 	/**
-	 * Инициализирует класс-контроллер. Этот метод вызывается автоматически
-	 * после того, как fxml-файл был загружен.
-	 */
+     * Initializes the controller class. This method is automatically called
+     * after the fxml file has been loaded.
+     */
 	@FXML
 	private void initialize() {
-		// Получаем массив с английскими именами месяцев.
+		 // Get an array with the English month names.
 		String[] months = DateFormatSymbols.getInstance(Locale.ENGLISH).getMonths();
-		// Преобразуем его в список и добавляем в наш ObservableList месяцев.
+		// Convert it to a list and add it to our ObservableList of months.
 		monthNames.addAll(Arrays.asList(months));
 
-		// Назначаем имена месяцев категориями для горизонтальной оси.
+		// Assign the month names as categories for the horizontal axis.
 		xAxis.setCategories(monthNames);
 	}
-
+	/**
+     * Sets the persons to show the statistics for.
+     * 
+     * @param persons
+     */
 	public void setPersonData(List<PersonDetails> personDetails) {
-		// Считаем адресатов, имеющих дни рождения в указанном месяце.
 		int[] monthCounter = new int[12];
 		for (PersonDetails p : personDetails) {
 			int month = p.getData().getMonthValue() - 1;

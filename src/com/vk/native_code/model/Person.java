@@ -10,7 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * Класс-модель для пользователя (Person).
+ * Model class for a user(Person).
  *
  */
 
@@ -22,14 +22,14 @@ public class Person {
 	private final ObservableList<PersonDetails> detailsList = FXCollections.observableArrayList();
 
 	/**
-	 * Конструктор по умолчанию.
+	 * Default constructor.
 	 */
 	public Person() {
 		this("Empty Name", "Empty Department");
 	}
 
 	/**
-	 * Конструктор с некоторыми начальными данными.
+	 * Constructor with some initial data.
 	 * 
 	 * @param name
 	 * @param department
@@ -40,7 +40,7 @@ public class Person {
 	}
 
 	/**
-	 * Метод для добавления детального списка данных для пользователя
+	 * Adding additional data to the person
 	 */
 	public void addDetailsList(String itemName, int count, Boolean state, Boolean cheked) {
 		detailsList.add(new PersonDetails(itemName, this.getDepartment(), count, state, cheked));

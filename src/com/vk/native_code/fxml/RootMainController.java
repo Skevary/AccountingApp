@@ -17,7 +17,7 @@ public class RootMainController {
 	}
 
 	/**
-	 * Создаёт пустую программу без таблиц.
+	 * Creates an empty table without fields.
 	 */
 	@FXML
 	private void handleNew() {
@@ -29,8 +29,7 @@ public class RootMainController {
 	}
 
 	/**
-	 * Открывает FileChooser, чтобы пользователь имел возможность выбрать
-	 * адресную книгу для загрузки.
+	 * Opens a FileChooser to let the user select an address book to load.
 	 */
 	@FXML
 	private void handleOpen() {
@@ -38,7 +37,6 @@ public class RootMainController {
 
 		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
 		fileChooser.getExtensionFilters().add(extFilter);
-		// Показываем диалог загрузки файла
 		File file = fileChooser.showOpenDialog(main.getPrimaryStage());
 
 		if (file != null) {
@@ -47,8 +45,8 @@ public class RootMainController {
 	}
 
 	/**
-	 * Сохраняет файл в файл адресатов, который в настоящее время открыт. Если
-	 * файл не открыт, то отображается диалог "save as".
+	 * Saves the file to the person file that is currently open. If there is no
+	 * open file, the "save as" dialog is shown.
 	 */
 	@FXML
 	private void handleSave() {
@@ -61,16 +59,13 @@ public class RootMainController {
 	}
 
 	/**
-	 * Открывает FileChooser, чтобы пользователь имел возможность выбрать файл,
-	 * куда будут сохранены данные
+	 * Opens a FileChooser to let the user select a file to save to.
 	 */
 	@FXML
 	private void handleSaveAs() {
 		FileChooser fileChooser = new FileChooser();
-		// Задаём фильтр расширений
 		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("XML files (*.xml)", "*.xml");
 		fileChooser.getExtensionFilters().add(extFilter);
-		// Показываем диалог сохранения файла
 		File file = fileChooser.showSaveDialog(main.getPrimaryStage());
 
 		if (file != null) {
@@ -83,15 +78,14 @@ public class RootMainController {
 	}
 
 	/**
-	 * Открывает диалоговое окно about.
+	 * Opens an about dialog.
 	 */
 	@FXML
 	private void handleAbout() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Automation Application");
 		alert.setHeaderText("About");
-		alert.setContentText(
-				"Author: Native_code\\feedback: new.vk.com/native_code");
+		alert.setContentText("Author: Native_code\\feedback: new.vk.com/native_code");
 		alert.showAndWait();
 	}
 
@@ -101,7 +95,7 @@ public class RootMainController {
 	}
 
 	/**
-	 * Закрывает приложение.
+	 * Closes the application.
 	 */
 	@FXML
 	private void handleExit() {

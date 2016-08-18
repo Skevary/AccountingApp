@@ -12,8 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * Окно для изменения дополнительной о пользователе.
- * 
+ * Form change additional information about the user.
  */
 public class PersonEditDialogDetailsController {
 	ObservableList<Boolean> itemStateList = FXCollections.observableArrayList(true, false);
@@ -30,8 +29,8 @@ public class PersonEditDialogDetailsController {
 	private boolean okClicked = false;
 
 	/**
-	 * Инициализирует класс-контроллер. Этот метод вызывается автоматически
-	 * после того, как fxml-файл будет загружен.
+	 * Initializes the controller class. This method is automatically called
+	 * after the fxml file has been loaded.
 	 */
 	@FXML
 	private void initialize() {
@@ -40,7 +39,7 @@ public class PersonEditDialogDetailsController {
 	}
 
 	/**
-	 * Устанавливает сцену для этого окна.
+	 * Sets the stage of this dialog.
 	 * 
 	 * @param dialogStage
 	 */
@@ -49,7 +48,7 @@ public class PersonEditDialogDetailsController {
 	}
 
 	/**
-	 * Задаёт пользователя, информацию о котором будем менять.
+	 * Sets the person to be edited in the dialog.
 	 * 
 	 * @param person
 	 */
@@ -62,7 +61,7 @@ public class PersonEditDialogDetailsController {
 	}
 
 	/**
-	 * Returns true, если пользователь кликнул OK, в другом случае false.
+	 * Returns true if the user clicked OK, false otherwise.
 	 * 
 	 * @return
 	 */
@@ -71,7 +70,7 @@ public class PersonEditDialogDetailsController {
 	}
 
 	/**
-	 * Вызывается, когда пользователь кликнул по кнопке OK.
+	 * Called when the user clicks ok.
 	 */
 	@FXML
 	private void handleOk() {
@@ -86,7 +85,7 @@ public class PersonEditDialogDetailsController {
 	}
 
 	/**
-	 * Вызывается, когда пользователь кликнул по кнопке Cancel.
+	 * Called when the user clicks cancel.
 	 */
 	@FXML
 	private void handleCancel() {
@@ -94,9 +93,9 @@ public class PersonEditDialogDetailsController {
 	}
 
 	/**
-	 * Проверяет пользовательский ввод в текстовых полях.
+	 * Validates the user input in the text fields.
 	 * 
-	 * @return true, если пользовательский ввод корректен
+	 * @return true if the input is valid
 	 */
 	private boolean isInputValid() {
 		String errorMessage = "";

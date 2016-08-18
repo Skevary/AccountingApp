@@ -35,14 +35,15 @@ public class MainController {
 	@FXML
 	private TableColumn<PersonDetails, Boolean> chekedColumn;
 
-	// Ссылка на главное приложение.
+	// Reference to the main application.
 	private Main main;
 
 	/**
-	 * Заполняет все колонки, отображая подробности о пользователе.
+	 * Fills all text fields to show details about the person. If the specified
+	 * person is null, all text fields are cleared.
 	 * 
 	 * @param person
-	 *            — адресат типа Person или null
+	 *            the person or null
 	 */
 	private void showPersonDetails(Person person) {
 		if (person != null) {
@@ -51,33 +52,34 @@ public class MainController {
 	}
 
 	/**
-	 * Инициализация класса-контроллера. Этот метод вызывается автоматически
-	 * после того, как fxml-файл будет загружен.
+	 * Initializes the controller class. This method is automatically called
+	 * after the fxml file has been loaded.
 	 */
 	@FXML
 	private void initialize() {
-		// Инициализация таблицы пользователя с двумя столбцами.
+		// Initialize the person table with the two columns.
 		nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
 		departmentColumn.setCellValueFactory(cellData -> cellData.getValue().departmentProperty());
-		// Инициализация таблицы пользователя с дополнительной информацией.
+		// Initialize the person table with the special information about the
+		// user.
 		itemNameColumn.setCellValueFactory(cellData -> cellData.getValue().itemNameProperty());
 		departmentColumnTwo.setCellValueFactory(cellData -> cellData.getValue().departmentProperty());
 		countColumn.setCellValueFactory(cellData -> cellData.getValue().countProperty().asObject());
 		stateColumn.setCellValueFactory(cellData -> cellData.getValue().stateProperty());
 		dataColumn.setCellValueFactory(cellData -> cellData.getValue().dataProperty());
 		chekedColumn.setCellValueFactory(cellData -> cellData.getValue().chekedProperty());
-		// Очистка дополнительной информации о пользователе. !
+		// Clear person details.
 		showPersonDetails(null);
-		// Слушаем изменения выбора, и при изменении отображаем
-		// дополнительную информацию о пользователе.
+		// Listen for selection changes and show the person details when
+		// changed.
 		personTable.getSelectionModel().selectedItemProperty()
 				.addListener((observable, oldValue, newValue) -> showPersonDetails(newValue));
 
 	}
 
 	/**
-	 * Вызывается, когда пользователь кликает по кнопке New Открывает диалоговое
-	 * окно с дополнительной информацией нового пользователя.
+	 * Called when the user clicks the new button. Opens a dialog to edit
+	 * details for a new person.
 	 */
 	@FXML
 	private void handleNewPerson() {
@@ -89,8 +91,8 @@ public class MainController {
 	}
 
 	/**
-	 * Вызывается, когда пользователь кликает по кнопка Edit Открывает
-	 * диалоговое окно для изменения выбранного пользователя.
+	 * Called when the user clicks the edit button. Opens a dialog to edit
+	 * details for the selected person.
 	 */
 	@FXML
 	private void handleEditPerson() {
@@ -102,7 +104,7 @@ public class MainController {
 			}
 
 		} else {
-			// Ничего не выбрано.
+			// Nothing selected.
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.initOwner(main.getPrimaryStage());
 			alert.setTitle("No Selection");
@@ -114,7 +116,7 @@ public class MainController {
 	}
 
 	/**
-	 * Вызывается, когда пользователь кликает по кнопке Delete.
+	 * Called when the user clicks on the delete button.
 	 */
 	@FXML
 	private void handleDeletePerson() {
@@ -122,7 +124,7 @@ public class MainController {
 		if (selectedIndex >= 0) {
 			personTable.getItems().remove(selectedIndex);
 		} else {
-			// Ничего не выбрано.
+			// Nothing selected.
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.initOwner(main.getPrimaryStage());
 			alert.setTitle("No Selection");
@@ -134,8 +136,8 @@ public class MainController {
 	}
 
 	/**
-	 * Вызывается, когда пользователь кликает по кнопке New Открывает диалоговое
-	 * окно с дополнительной информацией поля пользователя.
+	 * Called when the user clicks the new button. Opens a dialog to edit
+	 * special details for a new person.
 	 */
 	@FXML
 	private void handleNewPersonDetails() {
@@ -149,7 +151,7 @@ public class MainController {
 				personTable.getSelectionModel().getSelectedItem().getDetailsList().add(personDetails);
 			}
 		} else {
-			// Ничего не выбрано.
+			// Nothing selected.
 			Alert alert = new Alert(AlertType.WARNING);
 			alert.initOwner(main.getPrimaryStage());
 			alert.setTitle("No Selection");
@@ -161,8 +163,8 @@ public class MainController {
 	}
 
 	/**
-	 * Вызывается, когда пользователь кликает по кнопка Edit Открывает
-	 * диалоговое окно для изменения выбранного поля дополнительной информации.
+	 * Called when the user clicks the edit button. Opens a dialog to edit
+	 * special details for the selected person.
 	 */
 	@FXML
 	private void handleEditPersonDetails() {
@@ -185,7 +187,7 @@ public class MainController {
 	}
 
 	/**
-	 * Вызывается, когда пользователь кликает по кнопке Delete.
+	 * Called when the user clicks on the delete button.
 	 */
 	@FXML
 	private void handleDeletePersonDetails() {
@@ -204,7 +206,7 @@ public class MainController {
 	}
 
 	/**
-	 * Вызывается главным приложением, которое даёт на себя ссылку.
+	 * Is called by the main application to give a reference back to itself.
 	 * 
 	 * @param main
 	 */
