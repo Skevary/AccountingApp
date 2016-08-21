@@ -170,12 +170,13 @@ public class Main extends Application {
 			dialogStage.setTitle("Edit Person Details");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.setResizable(false);
-			dialogStage.initOwner(primaryStage);
+					dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
 			// Set the person into the controller.
 			PersonEditDialogDetailsController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-			controller.setPerson(personDetails);
+				controller.setPerson(personDetails);
 			// Show the dialog and wait until the user closes it.
 			dialogStage.showAndWait();
 
