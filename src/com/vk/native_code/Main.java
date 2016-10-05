@@ -131,6 +131,7 @@ public class Main extends Application {
 
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Edit Person");
+			dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.setResizable(false);
 			dialogStage.initOwner(primaryStage);
@@ -168,6 +169,7 @@ public class Main extends Application {
 
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Edit Person Details");
+			dialogStage.getIcons().add(new Image("file:resources/images/edit.png"));
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.setResizable(false);
 					dialogStage.initOwner(primaryStage);
@@ -198,6 +200,7 @@ public class Main extends Application {
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
 			dialogStage.setTitle("Statistics data");
+			dialogStage.getIcons().add(new Image("file:resources/images/calendar.png"));
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
 			Scene scene = new Scene(page);
