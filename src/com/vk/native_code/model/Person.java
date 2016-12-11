@@ -17,64 +17,64 @@ import javafx.collections.ObservableList;
 @XmlType(propOrder = { "name", "department", "detailsList" })
 public class Person {
 
-	private final StringProperty name;
-	private final StringProperty department;
-	private final ObservableList<PersonDetails> detailsList = FXCollections.observableArrayList();
+    private final StringProperty name;
+    private final StringProperty department;
+    private final ObservableList<PersonDetails> detailsList = FXCollections.observableArrayList();
 
-	/**
-	 * Default constructor.
-	 */
-	public Person() {
-		this("Empty Name", "Empty Department");
-	}
+    /**
+     * Default constructor.
+     */
+    public Person() {
+	this("Empty Name", "Empty Department");
+    }
 
-	/**
-	 * Constructor with some initial data.
-	 * 
-	 * @param name
-	 * @param department
-	 */
-	public Person(String name, String department) {
-		this.name = new SimpleStringProperty(name);
-		this.department = new SimpleStringProperty(department);
-	}
+    /**
+     * Constructor with some initial data.
+     * 
+     * @param name
+     * @param department
+     */
+    public Person(String name, String department) {
+	this.name = new SimpleStringProperty(name);
+	this.department = new SimpleStringProperty(department);
+    }
 
-	/**
-	 * Adding additional data to the person
-	 */
-	public void addDetailsList(String itemName, int count, Boolean state, Boolean cheked) {
-		detailsList.add(new PersonDetails(itemName, this.getDepartment(), count, state, cheked));
-	}
+    /**
+     * Adding additional data to the person
+     */
+    public void addDetailsList(String itemName, int count, Boolean state, Boolean cheked) {
+	detailsList.add(new PersonDetails(itemName, this.getDepartment(), count, state, cheked));
+    }
 
-	@XmlElement
-	public String getName() {
-		return name.get();
-	}
+    @XmlElement
+    public String getName() {
+	return name.get();
+    }
 
-	public void setName(String name) {
-		this.name.set(name);
-	}
+    public void setName(String name) {
+	this.name.set(name);
+    }
 
-	public StringProperty nameProperty() {
-		return name;
-	}
+    public StringProperty nameProperty() {
+	return name;
+    }
 
-	@XmlElement
-	public String getDepartment() {
-		return department.get();
-	}
+    @XmlElement
+    public String getDepartment() {
+	return department.get();
+    }
 
-	public void setDepartment(String department) {
-		this.department.set(department);
-	}
+    public void setDepartment(String department) {
+	this.department.set(department);
+    }
 
-	public StringProperty departmentProperty() {
-		return department;
-	}
+    public StringProperty departmentProperty() {
+	return department;
+    }
 
-	@XmlElementWrapper
-	public ObservableList<PersonDetails> getDetailsList() {
-		return detailsList;
-	}
+    @XmlElementWrapper
+    public ObservableList<PersonDetails> getDetailsList() {
+	return detailsList;
+    }
 
 }
